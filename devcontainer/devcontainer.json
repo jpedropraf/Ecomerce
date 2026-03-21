@@ -1,20 +1,36 @@
 {
-  "name": "Node.js (Latest) + Copilot CLI + Git Flow",
-  "image": "://mcr.microsoft.com",
+  "name": "Ecommerce API - Node.js + PostgreSQL",
+  "dockerComposeFile": "docker-compose.yaml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/Ecomerce",
 
   "features": {
     "ghcr.io/devcontainers/features/github-cli:1": {},
-    "ghcr.io/devcontainers/features/git:1": {}
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
   },
 
   "customizations": {
     "vscode": {
       "extensions": [
         "GitHub.copilot",
-        "GitHub.copilot-chat"
-      ]
+        "GitHub.copilot-chat",
+        "Prisma.prisma",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "firsttris.vscode-jest-runner"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "[prisma]": {
+          "editor.defaultFormatter": "Prisma.prisma"
+        }
+      }
     }
   },
-  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y git-flow && npm install -g @github/copilot",
+
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y git-flow && npm install -g @github/copilot && cd /workspaces/Ecomerce/api && npm install",
+  
   "remoteUser": "node"
 }
